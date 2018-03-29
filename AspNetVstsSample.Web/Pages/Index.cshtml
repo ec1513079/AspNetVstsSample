@@ -1,4 +1,6 @@
 ﻿@page
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
 @model IndexModel
 @{
     ViewData["Title"] = "Home page";
@@ -106,3 +108,5 @@
         </ul>
     </div>
 </div>
+
+@Configuration["ApplicationInsights:InstrumentationKey"]
