@@ -191,6 +191,20 @@
                     "properties": {
                         "ApplicationInsights:InstrumentationKey": "[reference(resourceId('Microsoft.Insights/components', parameters('webSiteName')), '2014-04-01').InstrumentationKey]"
                     }
+                },
+                {
+                    "apiVersion": "2015-08-01",
+                    "type": "config",
+                    "name": "slotconfignames",
+                    "properties": {
+                        "appSettingNames": [],
+                        "connectionStringNames": [
+                            "DefaultConnection"
+                        ]
+                    },
+                    "dependsOn": [
+                        "[resourceId('Microsoft.Web/Sites/', parameters('webSiteName'))]"
+                    ]
                 }
             ]
         },
