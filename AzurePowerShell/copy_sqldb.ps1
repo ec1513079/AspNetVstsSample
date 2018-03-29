@@ -6,7 +6,7 @@
         -SubscriptionName ec1513079@gmail.com `
         -ResourceGroupName AspNetVstsSample `
         -SqlServerName aspnetvstssample-sql-srv `
-        -$DatabaseName sampledb
+        -DatabaseName sampledb
 #>
 
 Param(
