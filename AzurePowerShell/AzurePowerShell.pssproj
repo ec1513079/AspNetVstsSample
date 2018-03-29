@@ -25,13 +25,19 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="vsts-templates\" />
+  </ItemGroup>
   <ItemGroup>
     <Compile Include="copy_sqldb.ps1" />
     <Compile Include="create_webapps_slot.ps1" />
     <Compile Include="delete_sqldb.ps1" />
     <Compile Include="delete_webapps_slot.ps1" />
     <Compile Include="rename_sqldb.ps1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="vsts-templates\asp.net-vsts-sample-cd.json" />
+    <Content Include="vsts-templates\asp.net-vsts-sample-ci.json" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="Build" />
