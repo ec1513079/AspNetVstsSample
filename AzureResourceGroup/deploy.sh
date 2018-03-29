@@ -62,7 +62,7 @@ if [[ -z "$resourceGroupLocation" ]]; then
 fi
 
 #templateFile Path - template file to be used
-templateFilePath="WebSiteSQLDatabase.json"
+templateFilePath="template.json"
 
 if [ ! -f "$templateFilePath" ]; then
 	echo "$templateFilePath not found"
@@ -70,7 +70,7 @@ if [ ! -f "$templateFilePath" ]; then
 fi
 
 #parameter file path
-parametersFilePath="WebSiteSQLDatabase.parameters.json"
+parametersFilePath="template.parameters.json"
 
 if [ ! -f "$parametersFilePath" ]; then
 	echo "$parametersFilePath not found"
