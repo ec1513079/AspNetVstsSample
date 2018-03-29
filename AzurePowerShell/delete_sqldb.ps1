@@ -1,20 +1,21 @@
 ﻿<#
  .NOTES
-    デプロイメントスロット作成スクリプト
+    SQL Database 削除 スクリプト
 
-    .\create_webapps_slot.ps1 `
+    .\delete_sqldb.ps1 `
         -SubscriptionName ec1513079@gmail.com `
         -ResourceGroupName AspNetVstsSample `
-        -WebAppName aspnetvstssample-web `
+        -SqlServerName aspnetvstssample-sql-srv `
         -DatabaseName sampledb
 #>
 
 Param(
     [string] [Parameter(Mandatory = $true)] $SubscriptionName,
     [string] [Parameter(Mandatory = $true)] $ResourceGroupName,
-    [string] [Parameter(Mandatory = $true)] $WebAppName,
+    [string] [Parameter(Mandatory = $true)] $SqlServerName,
     [string] [Parameter(Mandatory = $true)] $DatabaseName,
-    [string] $SlotName = "slot",
+    [string] $CopiedDBName = "${DatabaseName}_slot",
+    [string] $OriginDBName = "${DatabaseName}_orig",
     [switch] $Silent
 )
 
@@ -32,23 +33,28 @@ try {
 [Console]::WriteLine("=========================================================================")
 echo "<-- SubscriptionName -->" $SubscriptionName
 echo "<-- ResourceGroupName -->" $ResourceGroupName
-echo "<-- WebAppName -->" $WebAppName
+echo "<-- SqlServerName -->" $SqlServerName
 echo "<-- DatabaseName -->" $DatabaseName
-echo "<-- SlotName -->" $SlotName
+echo "<-- CopiedDBName -->" $CopiedDBName
+echo "<-- OriginDBName -->" $OriginDBName
 echo "<-- Silent -->" ([bool]$Silent)
 
+# 1. スロット接続用の SQL Database を削除
 [Console]::WriteLine("=========================================================================")
-[Console]::WriteLine("デプロイスロットの作成 : $WebAppName-$SlotName ($ResourceGroupName)")
+[Console]::WriteLine("データベースを削除 : $CopiedDBName ($SqlServerName)")
 [Console]::WriteLine("=========================================================================")
-New-AzureRmWebAppSlot -ResourceGroupName $ResourceGroupName -Name $WebAppName -Slot $SlotName
+Remove-AzureRmSqlDatabase `
+    -ResourceGroupName $ResourceGroupName `
+    -ServerName $SqlServerName `
+    -DatabaseName $CopiedDBName `
+    -Confirm:(!$Silent)
 
+# 2. 切り戻し用の SQL Database を削除
 [Console]::WriteLine("=========================================================================")
-[Console]::WriteLine("ConnectionString 設定 : $WebAppName-$SlotName ($ResourceGroupName)")
+[Console]::WriteLine("データベースを削除 : $OriginDBName ($SqlServerName)")
 [Console]::WriteLine("=========================================================================")
-$Resource = Invoke-AzureRmResourceAction -ResourceGroupName $ResourceGroupName -ResourceType "Microsoft.Web/sites/slots/config" `
-    -ResourceName "${WebAppName}/${SlotName}/connectionstrings" -Action list -ApiVersion 2016-08-01 -Force:($Silent)
-if ($Resource.properties.DefaultConnection) {
-    $Resource.properties.DefaultConnection.value = $Resource.properties.DefaultConnection.value -replace "${DatabaseName}", "${DatabaseName}_${SlotName}"
-}
-New-AzureRmResource -ResourceGroupName $ResourceGroupName -ResourceType "Microsoft.Web/sites/slots/config" `
-    -ResourceName "${WebAppName}/${SlotName}/connectionstrings" -ApiVersion 2016-08-01 -Propertie $Resource.properties -Force:($Silent)
+Remove-AzureRmSqlDatabase `
+    -ResourceGroupName $ResourceGroupName `
+    -ServerName $SqlServerName `
+    -DatabaseName $OriginDBName `
+    -Confirm:(!$Silent)

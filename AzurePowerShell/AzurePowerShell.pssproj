@@ -29,6 +29,9 @@
   <ItemGroup>
     <Compile Include="copy_sqldb.ps1" />
     <Compile Include="create_webapps_slot.ps1" />
+    <Compile Include="delete_sqldb.ps1" />
+    <Compile Include="delete_webapps_slot.ps1" />
+    <Compile Include="rename_sqldb.ps1" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="Build" />
