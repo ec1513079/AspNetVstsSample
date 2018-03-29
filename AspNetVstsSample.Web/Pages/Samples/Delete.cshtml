@@ -1,4 +1,4 @@
-@page
+@page "{id:int}"
 @model AspNetVstsSample.Web.Pages_Samples.DeleteModel
 
 @{
@@ -25,7 +25,7 @@
             @Html.DisplayFor(model => model.Sample.Detail)
         </dd>
     </dl>
-    
+
     <form method="post">
         <input type="hidden" asp-for="Sample.Id" />
         <input type="submit" value="Delete" class="btn btn-default" /> |
