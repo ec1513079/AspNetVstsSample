@@ -179,6 +179,18 @@
                             "type": "SQLServer"
                         }
                     }
+                },
+                {
+                    "apiVersion": "2015-08-01",
+                    "type": "config",
+                    "name": "appsettings",
+                    "dependsOn": [
+                        "[resourceId('Microsoft.Web/Sites/', parameters('webSiteName'))]",
+                        "[resourceId('Microsoft.Insights/components', parameters('webSiteName'))]"
+                    ],
+                    "properties": {
+                        "ApplicationInsights:InstrumentationKey": "[reference(resourceId('Microsoft.Insights/components', parameters('webSiteName')), '2014-04-01').InstrumentationKey]"
+                    }
                 }
             ]
         },
@@ -400,5 +412,11 @@
                 "ApplicationId": "[parameters('webSiteName')]"
             }
         }
-    ]
+    ],
+    "outputs": {
+        "InstrumentationKey": {
+            "value": "[reference(resourceId('Microsoft.Insights/components', parameters('webSiteName')), '2014-04-01').InstrumentationKey]",
+            "type": "string"
+        }
+    }
 }
