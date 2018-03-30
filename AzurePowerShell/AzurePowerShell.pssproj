@@ -27,6 +27,8 @@
   </PropertyGroup>
   <ItemGroup>
     <Folder Include="vsts-templates\" />
+    <Folder Include="vsts-templates\build_definition\" />
+    <Folder Include="vsts-templates\release_definition\" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="copy_sqldb.ps1" />
@@ -36,9 +38,9 @@
     <Compile Include="rename_sqldb.ps1" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="vsts-templates\asp.net-vsts-sample-arm-deploy.json" />
-    <Content Include="vsts-templates\asp.net-vsts-sample-cd.json" />
-    <Content Include="vsts-templates\asp.net-vsts-sample-ci.json" />
+    <Content Include="vsts-templates\release_definition\asp.net-vsts-sample-arm-deploy.json" />
+    <Content Include="vsts-templates\release_definition\asp.net-vsts-sample-cd.json" />
+    <Content Include="vsts-templates\build_definition\asp.net-vsts-sample-ci.json" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Target Name="Build" />
