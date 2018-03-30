@@ -36,6 +36,7 @@
     <Compile Include="rename_sqldb.ps1" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="vsts-templates\asp.net-vsts-sample-arm-deploy.json" />
     <Content Include="vsts-templates\asp.net-vsts-sample-cd.json" />
     <Content Include="vsts-templates\asp.net-vsts-sample-ci.json" />
   </ItemGroup>
