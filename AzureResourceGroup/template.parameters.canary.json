@@ -1,0 +1,27 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "hostingPlanName": {
+      "value": "aspnetvstssample-plan-cnry"
+    },
+    "skuName": {
+      "value": "S1"
+    },
+    "webSiteName": {
+      "value": "aspnetvstssample-web-cnry"
+    },
+    "sqlserverName": {
+      "value": "aspnetvstssample-sql-srv-cnry"
+    },
+    "databaseName": {
+      "value": "sampledb"
+    },
+    "administratorLogin": {
+      "value": "sqladmin"
+    },
+    "administratorLoginPassword": {
+      "value": "sqlDB123"
+    }
+  }
+}
