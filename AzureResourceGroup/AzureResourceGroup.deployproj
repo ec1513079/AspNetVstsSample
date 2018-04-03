@@ -30,6 +30,7 @@
       <Visible>False</Visible>
     </None>
     <Content Include="Deploy-AzureResourceGroup.ps1" />
+    <Content Include="template.parameters.canary.json" />
     <Content Include="template.json" />
     <Content Include="template.parameters.json" />
   </ItemGroup>
