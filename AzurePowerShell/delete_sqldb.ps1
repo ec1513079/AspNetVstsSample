@@ -15,7 +15,6 @@ Param(
     [string] [Parameter(Mandatory = $true)] $SqlServerName,
     [string] [Parameter(Mandatory = $true)] $DatabaseName,
     [string] $CopiedDBName = "${DatabaseName}_slot",
-    [string] $OriginDBName = "${DatabaseName}_orig",
     [switch] $Silent
 )
 
@@ -36,7 +35,6 @@ echo "<-- ResourceGroupName -->" $ResourceGroupName
 echo "<-- SqlServerName -->" $SqlServerName
 echo "<-- DatabaseName -->" $DatabaseName
 echo "<-- CopiedDBName -->" $CopiedDBName
-echo "<-- OriginDBName -->" $OriginDBName
 echo "<-- Silent -->" ([bool]$Silent)
 
 # 1. スロット接続用の SQL Database を削除
@@ -47,14 +45,4 @@ Remove-AzureRmSqlDatabase `
     -ResourceGroupName $ResourceGroupName `
     -ServerName $SqlServerName `
     -DatabaseName $CopiedDBName `
-    -Confirm:(!$Silent)
-
-# 2. 切り戻し用の SQL Database を削除
-[Console]::WriteLine("=========================================================================")
-[Console]::WriteLine("データベースを削除 : $OriginDBName ($SqlServerName)")
-[Console]::WriteLine("=========================================================================")
-Remove-AzureRmSqlDatabase `
-    -ResourceGroupName $ResourceGroupName `
-    -ServerName $SqlServerName `
-    -DatabaseName $OriginDBName `
     -Confirm:(!$Silent)
