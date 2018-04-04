@@ -11,6 +11,9 @@
     "webSiteName": {
       "value": "aspnetvstssample-web"
     },
+    "maxCapacity": {
+      "value": 3
+    },
     "sqlserverName": {
       "value": "aspnetvstssample-sql-srv"
     },

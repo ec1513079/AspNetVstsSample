@@ -22,6 +22,20 @@
     },
     "administratorLoginPassword": {
       "value": "sqlDB123"
+    },
+    "ipSecurityRestrictions": {
+      "value": [
+        {
+          // é–ì‡OA
+          "ipAddress": "218.45.212.2",
+          "subnetMask": "255.255.255.255"
+        },
+        {
+          // VDI-TEC
+          "ipAddress": "219.101.166.66",
+          "subnetMask": "255.255.255.255"
+        }
+      ]
     }
   }
 }
