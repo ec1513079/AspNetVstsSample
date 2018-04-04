@@ -12,7 +12,7 @@
       "value": "aspnetvstssample-web"
     },
     "maxCapacity": {
-      "value": 3
+      "value": 2
     },
     "sqlserverName": {
       "value": "aspnetvstssample-sql-srv"
