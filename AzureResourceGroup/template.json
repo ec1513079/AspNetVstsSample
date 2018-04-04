@@ -634,7 +634,7 @@
         }
       },
       "dependsOn": [
-        "[resourceId('Microsoft.Sql/servers/databases', parameters('sqlserverName', parameters('databaseName'))]"
+        "[resourceId('Microsoft.Sql/servers/databases', parameters('sqlserverName'), parameters('databaseName'))]"
       ]
     },
 
@@ -666,7 +666,7 @@
         }
       },
       "dependsOn": [
-        "[resourceId('Microsoft.Sql/servers/databases', parameters('sqlserverName', parameters('databaseName'))]"
+        "[resourceId('Microsoft.Sql/servers/databases', parameters('sqlserverName'), parameters('databaseName'))]"
       ]
     },
 
@@ -698,7 +698,7 @@
         }
       },
       "dependsOn": [
-        "[resourceId('Microsoft.Sql/servers/databases', parameters('sqlserverName', parameters('databaseName'))]"
+        "[resourceId('Microsoft.Sql/servers/databases', parameters('sqlserverName'), parameters('databaseName'))]"
       ]
     },
 
